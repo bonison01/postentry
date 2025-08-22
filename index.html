@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Data Extractor</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@^0.14.0"
+        }
+      }
+    </script>
+    <script type="module" src="index.tsx"></script>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script src="https://apis.google.com/js/api.js" async></script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <header>
+        <h1>📄 Document Data Extractor</h1>
+        <p>Upload a document image to automatically extract structured data.</p>
+    </header>
+    <main>
+        <div class="controls">
+            <div class="file-uploader">
+                <label for="file-upload" id="file-label">
+                    <span>Click to upload or drag & drop</span>
+                </label>
+                <input type="file" id="file-upload" accept="image/*">
+            </div>
+            <button id="extract-button" disabled>Extract Data</button>
+
+            <div class="g-sheet-controls">
+                <h3>Google Sheets Export</h3>
+                <button id="connect-g-sheet-button">Connect to Google Sheets</button>
+                <p id="g-sheet-status">Status: Not Connected</p>
+                <button id="export-button" disabled>Export to Sheet</button>
+                <div id="export-result" class="hidden"></div>
+            </div>
+        </div>
+        <div class="output">
+            <div class="preview-container">
+                <img id="image-preview" src="#" alt="Image preview" class="hidden"/>
+            </div>
+            <div id="loader" class="hidden">
+                <div class="spinner"></div>
+                <p id="loader-message">Analyzing document... this may take a moment.</p>
+            </div>
+            <p id="error-message" class="hidden"></p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sender GSTIN</th>
+                            <th>Booking Office GSTIN</th>
+                            <th>Customer ID</th>
+                            <th>Contract ID</th>
+                            <th>Customer Name</th>
+                            <th>Booking Ref. ID</th>
+                            <th>Serial No.</th>
+                            <th>Article Number</th>
+                            <th>Product Type</th>
+                            <th>Weight (gms)</th>
+                            <th>Sender Name</th>
+                            <th>Receiver Name</th>
+                            <th>Base Tariff (incl. VAS)</th>
+                            <th>Remarks</th>
+                            <th>Created By</th>
+                            <th>Created On</th>
+                            <th>Bulk Reference</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
